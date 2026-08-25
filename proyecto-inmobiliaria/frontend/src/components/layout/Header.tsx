@@ -10,9 +10,9 @@ const NAV_ITEMS = [
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-50 bg-cream/50">
-      <div className="flex h-28 items-center justify-between px-6 sm:px-10 lg:px-12">
-        <Link href="/" className="flex translate-y-2 items-center" aria-label="Vilanova Propiedades">
+    <header className="sticky top-0 z-50 bg-cream/90 backdrop-blur">
+      <div className="flex h-28 items-center justify-between px-6 sm:px-12 lg:px-16">
+        <Link href="/" className="ml-4 flex translate-y-2 items-center sm:ml-5 lg:ml-6" aria-label="Vilanova Propiedades">
           <Image
             src="/logo.png"
             alt="Vilanova Propiedades"
@@ -23,8 +23,8 @@ export default function Header() {
           />
         </Link>
 
-        <nav aria-label="Principal">
-          <ul className="hidden items-center gap-12 md:flex lg:gap-16">
+        <nav aria-label="Principal" className="mr-4 md:mr-8 lg:mr-14">
+          <ul className="hidden items-center gap-14 md:flex lg:gap-20">
             {NAV_ITEMS.map((item) => (
               <li key={item.href}>
                 <Link

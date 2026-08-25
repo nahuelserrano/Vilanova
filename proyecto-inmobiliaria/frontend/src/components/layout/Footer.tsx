@@ -26,7 +26,7 @@ export default function Footer() {
     <footer className="bg-cream">
       <div className="container-page grid gap-10 py-14 md:grid-cols-3">
         <div className="space-y-5">
-          <div className="flex h-20 w-20 items-center justify-center rounded-full bg-gold text-center font-serif text-lg font-bold leading-tight text-charcoal">
+          <div className="flex h-20 w-20 items-center justify-center rounded-full bg-gold text-center text-lg font-bold leading-tight text-charcoal">
             Desde
             <br />
             1947
@@ -38,7 +38,7 @@ export default function Footer() {
         </div>
 
         <div className="space-y-5">
-          <h3 className="font-serif text-lg text-charcoal">Contacto</h3>
+          <h3 className="text-lg text-charcoal">Contacto</h3>
           <ul className="space-y-4">
             {CONTACT.map(({ icon: Icon, text }) => (
               <li key={text} className="flex items-start gap-3 text-sm text-charcoal">
@@ -50,7 +50,7 @@ export default function Footer() {
         </div>
 
         <div className="space-y-5">
-          <h3 className="font-serif text-lg text-charcoal">Enlaces rápidos</h3>
+          <h3 className="text-lg text-charcoal">Enlaces rápidos</h3>
           <ul className="space-y-2">
             {QUICK_LINKS.map((link) => (
               <li key={link.href}>
@@ -65,7 +65,7 @@ export default function Footer() {
           </ul>
 
           <div>
-            <h3 className="mb-3 font-serif text-lg text-charcoal">Seguinos</h3>
+            <h3 className="mb-3 text-lg text-charcoal">Seguinos</h3>
             <div className="flex gap-3">
               {SOCIAL.map(({ icon: Icon, label, href }) => (
                 <a

@@ -24,7 +24,7 @@ export default function Categories() {
             className="group flex flex-col items-center gap-4 rounded-2xl border border-line bg-white p-8 text-center shadow-sm transition-shadow hover:shadow-md"
           >
             <Icon className="h-12 w-12 text-charcoal" strokeWidth={1.25} aria-hidden />
-            <h3 className="font-serif text-xl text-charcoal">{label}</h3>
+            <h3 className="text-xl text-charcoal">{label}</h3>
             <p className="text-sm text-charcoal/70">{text}</p>
             <ArrowRight
               className="mt-2 h-5 w-5 text-gold transition-transform group-hover:translate-x-1"

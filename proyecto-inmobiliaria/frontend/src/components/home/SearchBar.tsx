@@ -3,7 +3,7 @@ import { Search } from "lucide-react";
 
 export default function SearchBar() {
   return (
-    <section className="container-page -mt-4 pb-10">
+    <section className="container-page relative z-10 -mt-12 pb-10">
       <div className="grid gap-6 rounded-2xl bg-white p-6 shadow-lg shadow-charcoal/5 md:grid-cols-[1fr_1fr_1fr_auto] md:items-end">
         <label className="block">
           <span className="mb-2 block text-xs font-semibold tracking-wide text-charcoal/70 uppercase">

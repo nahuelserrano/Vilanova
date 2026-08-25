@@ -1,8 +1,9 @@
 @import "tailwindcss";
 
 @theme {
-  --color-cream: #f7f0e1;
+  --color-cream: #fcedd5;
   --color-cream-soft: #fcf8ee;
+  --color-fade: #fcedd5;
   --color-gold: #e8b414;
   --color-gold-dark: #cfa10d;
   --color-charcoal: #262626;
@@ -10,11 +11,10 @@
   --color-line: #e4dcc8;
 
   --font-sans: var(--font-inter);
-  --font-serif: var(--font-playfair);
 }
 
 body {
-  background-color: var(--color-cream);
+  background-color: #ffffff;
   color: var(--color-ink);
   font-family: var(--font-sans);
 }
@@ -41,6 +41,6 @@ body {
   }
 
   .section-title {
-    @apply font-serif text-3xl text-charcoal sm:text-4xl;
+    @apply text-3xl text-charcoal sm:text-4xl;
   }
 }

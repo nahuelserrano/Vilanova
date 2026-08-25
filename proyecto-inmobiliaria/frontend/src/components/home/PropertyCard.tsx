@@ -34,7 +34,7 @@ export default function PropertyCard({ property }: { property: PublicProperty })
       </Link>
 
       <div className="flex flex-1 flex-col gap-2 p-5">
-        <h3 className="font-serif text-xl text-charcoal">
+        <h3 className="text-xl text-charcoal">
           <Link href={`/properties/${property.id}`} className="hover:text-gold">
             {property.title}
           </Link>
