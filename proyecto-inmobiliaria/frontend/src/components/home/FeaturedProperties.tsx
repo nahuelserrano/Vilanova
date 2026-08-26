@@ -29,8 +29,8 @@ export default async function FeaturedProperties() {
 
       {items.length > 0 ? (
         <div className="grid gap-6 md:grid-cols-3">
-          {items.map((property) => (
-            <PropertyCard key={property.id} property={property} />
+          {items.map((property, index) => (
+            <PropertyCard key={property.id} property={property} priority={index === 0} />
           ))}
         </div>
       ) : (

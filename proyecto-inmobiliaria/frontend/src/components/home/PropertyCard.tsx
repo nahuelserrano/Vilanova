@@ -4,7 +4,13 @@ import { Heart } from "lucide-react";
 import type { PublicProperty } from "@/lib/types";
 import { formatFeatures, formatPrice } from "@/lib/format";
 
-export default function PropertyCard({ property }: { property: PublicProperty }) {
+export default function PropertyCard({
+  property,
+  priority = false,
+}: {
+  property: PublicProperty;
+  priority?: boolean;
+}) {
   const isRental = property.operation === "alquiler";
   const image = property.images[0];
 
@@ -17,6 +23,7 @@ export default function PropertyCard({ property }: { property: PublicProperty })
             alt={property.title}
             fill
             sizes="(max-width: 768px) 100vw, 33vw"
+            priority={priority}
             className="object-cover transition-transform duration-300 group-hover:scale-105"
           />
         ) : (

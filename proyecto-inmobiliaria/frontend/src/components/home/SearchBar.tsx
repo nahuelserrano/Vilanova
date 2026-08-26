@@ -37,9 +37,11 @@ export default function SearchBar() {
               <option>USD</option>
               <option>ARS</option>
             </select>
-            <select className="flex-1 rounded-lg border border-line bg-cream-soft px-4 py-3 text-sm text-charcoal focus:border-gold focus:outline-none">
-              <option>Hasta cualquier precio</option>
-            </select>
+            <input
+              type="number"
+              placeholder="Hasta..."
+              className="flex-1 rounded-lg border border-line bg-cream-soft px-4 py-3 text-sm text-charcoal focus:border-gold focus:outline-none"
+            />
           </div>
         </label>
 
