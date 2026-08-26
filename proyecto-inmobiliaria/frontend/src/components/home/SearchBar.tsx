@@ -1,7 +1,19 @@
 import Link from "next/link";
 import { Search } from "lucide-react";
+import { getAvailablePropertyTypes } from "@/lib/api";
+import { formatPropertyType } from "@/lib/format";
 
-export default function SearchBar() {
+const FALLBACK_TYPES = ["Casas", "Departamentos", "Locales"];
+
+export default async function SearchBar() {
+  let types: string[];
+
+  try {
+    types = await getAvailablePropertyTypes();
+  } catch {
+    types = FALLBACK_TYPES;
+  }
+
   return (
     <section className="container-page relative z-10 -mt-12 pb-10">
       <div className="grid gap-6 rounded-2xl bg-white p-6 shadow-lg shadow-charcoal/5 md:grid-cols-[1fr_1fr_1fr_auto] md:items-end">
@@ -21,10 +33,12 @@ export default function SearchBar() {
             Tipo de propiedad
           </span>
           <select className="w-full rounded-lg border border-line bg-cream-soft px-4 py-3 text-sm text-charcoal focus:outline-none">
-            <option>Todas</option>
-            <option>Casas</option>
-            <option>Departamentos</option>
-            <option>Locales</option>
+            <option value="">Todas</option>
+            {types.map((type) => (
+              <option key={type} value={type}>
+                {formatPropertyType(type)}
+              </option>
+            ))}
           </select>
         </label>
 

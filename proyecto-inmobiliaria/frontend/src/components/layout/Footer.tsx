@@ -1,5 +1,6 @@
+import Image from "next/image";
 import Link from "next/link";
-import { Camera, Clock, Mail, MapPin, MessageCircle, Phone, Share2 } from "lucide-react";
+import { Clock, Mail, MapPin, Phone } from "lucide-react";
 
 const QUICK_LINKS = [
   { label: "Inicio", href: "/" },
@@ -9,32 +10,26 @@ const QUICK_LINKS = [
 ];
 
 const CONTACT = [
-  { icon: MapPin, text: "Av. Mitre 1234, Quilmes" },
-  { icon: Phone, text: "11 4242 4242" },
-  { icon: Mail, text: "hola@vilanovapropiedades.com.ar" },
-  { icon: Clock, text: "Lunes a viernes de 9 a 18 h" },
-];
-
-const SOCIAL = [
-  { icon: Camera, label: "Instagram", href: "#" },
-  { icon: Share2, label: "Facebook", href: "#" },
-  { icon: MessageCircle, label: "WhatsApp", href: "#" },
+  { icon: MapPin, text: "Paz 578, Tandil" },
+  { icon: Phone, text: "2494 231265" },
+  { icon: Mail, text: "propiedadesvilanova@gmail.com" },
+  { icon: Clock, text: "Lunes a viernes de 9 a 12:30 y de 14 a 17 h." },
 ];
 
 export default function Footer() {
   return (
     <footer className="bg-cream">
-      <div className="container-page grid gap-10 py-14 md:grid-cols-3">
-        <div className="space-y-5">
-          <div className="flex h-20 w-20 items-center justify-center rounded-full bg-gold text-center text-lg font-bold leading-tight text-charcoal">
-            Desde
-            <br />
-            1947
-          </div>
-          <p className="max-w-xs text-sm text-charcoal/80">
-            Tradición, confianza y compromiso. Acompañando a generaciones en cada
-            paso.
-          </p>
+      <div className="container-page flex flex-col items-center gap-10 py-14 md:flex-row md:items-start md:justify-center md:gap-24">
+        <div className="flex items-center md:self-center">
+          <Link href="/" aria-label="Vilanova Propiedades">
+            <Image
+              src="https://res.cloudinary.com/dz7rrw0wa/image/upload/v1779378204/logos/logo_1779378204498.png"
+              alt="Vilanova Propiedades"
+              width={831}
+              height={300}
+              className="h-40 w-auto sm:h-48"
+            />
+          </Link>
         </div>
 
         <div className="space-y-5">
@@ -63,29 +58,27 @@ export default function Footer() {
               </li>
             ))}
           </ul>
-
-          <div>
-            <h3 className="mb-3 text-lg text-charcoal">Seguinos</h3>
-            <div className="flex gap-3">
-              {SOCIAL.map(({ icon: Icon, label, href }) => (
-                <a
-                  key={label}
-                  href={href}
-                  aria-label={label}
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-charcoal/20 text-charcoal transition-colors hover:border-gold hover:text-gold"
-                >
-                  <Icon className="h-5 w-5" aria-hidden />
-                </a>
-              ))}
-            </div>
-          </div>
         </div>
       </div>
 
-      <div className="bg-charcoal py-5">
-        <p className="container-page text-center text-xs text-cream">
-          © {new Date().getFullYear()} Vilanova Propiedades. Todos los derechos
-          reservados.
+      <div className="relative">
+        <div className="bg-charcoal py-5">
+          <div className="container-page flex justify-center">
+            <p className="text-xs text-cream">
+              © {new Date().getFullYear()} Vilanova Propiedades. Todos los derechos
+              reservados.
+            </p>
+          </div>
+        </div>
+        <p className="absolute right-0 bottom-full flex items-center gap-2 pr-6 pb-4 text-sm text-charcoal/70">
+          Sitio web desarrollado por
+            <Image
+              src="/logo-desarrollos.png"
+              alt="Logo desarrollos"
+              width={963}
+              height={259}
+              className="h-10 w-auto"
+            />
         </p>
       </div>
     </footer>

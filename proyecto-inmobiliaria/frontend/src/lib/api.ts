@@ -1,3 +1,4 @@
+import { unstable_cache } from "next/cache";
 import { API_URL } from "@/lib/env";
 import type { PaginatedProperties, PublicProperty } from "@/lib/types";
 
@@ -32,3 +33,25 @@ export async function getProperties(
 export async function getProperty(id: string): Promise<PublicProperty> {
   return request<PublicProperty>(`properties/${id}`);
 }
+
+export const getAvailablePropertyTypes = unstable_cache(
+  async (): Promise<string[]> => {
+    const types = new Set<string>();
+    let page = 1;
+
+    while (true) {
+      const data = await getProperties({ page, pageSize: 50 });
+
+      for (const property of data?.items ?? []) {
+        if (property.propertyType) types.add(property.propertyType);
+      }
+
+      if (page >= data.pagination.totalPages) break;
+      page += 1;
+    }
+
+    return Array.from(types);
+  },
+  ["property-types"],
+  { revalidate: 3600 },
+);

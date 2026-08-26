@@ -33,7 +33,13 @@ const PROPERTY_TYPE_ACCENTS: Record<string, string> = {
 
 export function formatPropertyType(propertyType: string): string {
   const key = propertyType.trim().toLowerCase();
-  return PROPERTY_TYPE_ACCENTS[key] ?? key.charAt(0).toUpperCase() + key.slice(1);
+  if (PROPERTY_TYPE_ACCENTS[key]) return PROPERTY_TYPE_ACCENTS[key];
+
+  return key
+    .split("_")
+    .filter(Boolean)
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
 }
 
 export function formatFeatures(property: PublicProperty): string {
