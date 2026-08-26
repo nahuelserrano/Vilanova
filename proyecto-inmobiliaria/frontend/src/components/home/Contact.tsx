@@ -21,12 +21,23 @@ export default function Contact() {
           </p>
 
           <ul className="space-y-5">
-            {CONTACT.map(({ icon: Icon, text }, index) => (
+            {CONTACT.map(({ icon: Icon, text, href }, index) => (
               <li key={`${text}-${index}`} className="flex items-center gap-4">
                 <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-line bg-cream-soft">
                   <Icon className="h-5 w-5 text-gold" aria-hidden />
                 </span>
-                <span className="text-sm font-medium text-charcoal">{text}</span>
+                {href ? (
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm font-medium text-charcoal transition-colors hover:text-gold"
+                  >
+                    {text}
+                  </a>
+                ) : (
+                  <span className="text-sm font-medium text-charcoal">{text}</span>
+                )}
               </li>
             ))}
           </ul>

@@ -28,10 +28,21 @@ export default function Footer() {
         <div className="space-y-5">
           <h3 className="text-lg text-charcoal">Contacto</h3>
           <ul className="space-y-4">
-            {CONTACT.map(({ icon: Icon, text }) => (
+            {CONTACT.map(({ icon: Icon, text, href }) => (
               <li key={text} className="flex items-start gap-3 text-sm text-charcoal">
                 <Icon className="mt-0.5 h-5 w-5 shrink-0 text-gold" aria-hidden />
-                <span>{text}</span>
+                {href ? (
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="transition-colors hover:text-gold"
+                  >
+                    {text}
+                  </a>
+                ) : (
+                  <span>{text}</span>
+                )}
               </li>
             ))}
           </ul>
