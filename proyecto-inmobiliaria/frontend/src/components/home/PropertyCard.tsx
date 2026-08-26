@@ -14,7 +14,7 @@ export default function PropertyCard({
 
   return (
     <article className="group flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm transition-shadow hover:shadow-md">
-      <Link href={`/properties/${property.id}`} className="relative block aspect-[4/3] overflow-hidden">
+      <Link href={`/properties/${property.id}`} className="relative block aspect-4/3 overflow-hidden">
         {image ? (
           <Image
             src={image}

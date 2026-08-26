@@ -40,11 +40,11 @@ export function formatFeatures(property: PublicProperty): string {
   const f = property.features;
   const parts: string[] = [];
 
-  if (f.rooms != null) parts.push(`${f.rooms} amb.`);
-  if (f.totalSurface != null) parts.push(`${f.totalSurface} m²`);
+  if (f.bedrooms != null) parts.push(`${f.bedrooms} dorm.`);
   if (f.bathrooms != null)
     parts.push(`${f.bathrooms} baño${f.bathrooms > 1 ? "s" : ""}`);
   if (f.garage != null) parts.push(`Cochera`);
+  if (f.totalSurface != null) parts.push(`${f.totalSurface} m²`);
 
   return parts.join(" · ");
 }

@@ -19,9 +19,9 @@ export default function Hero() {
       <div className="relative z-10 flex min-h-[560px] flex-col justify-center gap-10 px-6 pt-10 pb-16 sm:px-12 lg:min-h-[660px] lg:flex-row lg:items-center lg:justify-start lg:px-16 lg:pb-0">
         <div className="order-2 flex max-w-2xl flex-col justify-center space-y-7 pl-11 sm:pl-12 lg:order-1 lg:pl-14">
           <h1 className="text-[2.5rem] leading-[1.08] text-charcoal sm:text-5xl lg:text-6xl">
-            Tu próximo hogar,
+            Tu próximo hogar
             <br />
-            <span className="font-bold text-gold">está más cerca de lo que imaginás</span>.
+            <span className="font-bold text-gold">está más cerca de lo que imaginás.</span>
           </h1>
           <p className="max-w-md text-lg text-charcoal/80">
             Más de 75 años ayudando a familias a encontrar el lugar perfecto.

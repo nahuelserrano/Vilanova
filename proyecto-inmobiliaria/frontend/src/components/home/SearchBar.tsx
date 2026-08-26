@@ -9,7 +9,7 @@ export default function SearchBar() {
           <span className="mb-2 block text-xs font-semibold tracking-wide text-charcoal/70 uppercase">
             Operación
           </span>
-          <select className="w-full rounded-lg border border-line bg-cream-soft px-4 py-3 text-sm text-charcoal focus:border-gold focus:outline-none">
+          <select className="w-full rounded-lg border border-line bg-cream-soft px-4 py-3 text-sm text-charcoal focus:outline-none">
             <option>Todas</option>
             <option>Venta</option>
             <option>Alquiler</option>
@@ -20,7 +20,7 @@ export default function SearchBar() {
           <span className="mb-2 block text-xs font-semibold tracking-wide text-charcoal/70 uppercase">
             Tipo de propiedad
           </span>
-          <select className="w-full rounded-lg border border-line bg-cream-soft px-4 py-3 text-sm text-charcoal focus:border-gold focus:outline-none">
+          <select className="w-full rounded-lg border border-line bg-cream-soft px-4 py-3 text-sm text-charcoal focus:outline-none">
             <option>Todas</option>
             <option>Casas</option>
             <option>Departamentos</option>
@@ -33,14 +33,14 @@ export default function SearchBar() {
             Precio máximo
           </span>
           <div className="flex gap-2">
-            <select className="w-24 rounded-lg border border-line bg-cream-soft px-3 py-3 text-sm text-charcoal focus:border-gold focus:outline-none">
+            <select className="w-24 rounded-lg border border-line bg-cream-soft px-3 py-3 text-sm text-charcoal focus:outline-none">
               <option>USD</option>
               <option>ARS</option>
             </select>
             <input
               type="number"
               placeholder="Hasta..."
-              className="flex-1 rounded-lg border border-line bg-cream-soft px-4 py-3 text-sm text-charcoal focus:border-gold focus:outline-none"
+              className="flex-1 rounded-lg border border-line bg-cream-soft px-4 py-3 text-sm text-charcoal focus:outline-none"
             />
           </div>
         </label>
