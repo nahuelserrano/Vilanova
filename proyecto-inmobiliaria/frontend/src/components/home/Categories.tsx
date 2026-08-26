@@ -21,13 +21,13 @@ export default function Categories() {
           <Link
             key={label}
             href="/properties"
-            className="group flex flex-col items-center gap-4 rounded-2xl border border-line bg-white p-8 text-center shadow-sm transition-shadow hover:shadow-md"
+            className="group flex flex-col items-center gap-4 rounded-2xl border border-line bg-cream-soft p-8 text-center shadow-sm transition-shadow hover:shadow-md"
           >
             <Icon className="h-12 w-12 text-charcoal" strokeWidth={1.25} aria-hidden />
             <h3 className="text-xl text-charcoal">{label}</h3>
             <p className="text-sm text-charcoal/70">{text}</p>
             <ArrowRight
-              className="mt-2 h-5 w-5 text-gold transition-transform group-hover:translate-x-1"
+              className="mt-2 h-5 w-5 text-gold transition-transform duration-300 group-hover:translate-x-2"
               aria-hidden
             />
           </Link>

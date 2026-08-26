@@ -1,8 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Heart } from "lucide-react";
 import type { PublicProperty } from "@/lib/types";
-import { formatFeatures, formatPrice } from "@/lib/format";
+import { formatFeatures, formatPrice, formatPropertyType } from "@/lib/format";
 
 export default function PropertyCard({
   property,
@@ -11,7 +10,6 @@ export default function PropertyCard({
   property: PublicProperty;
   priority?: boolean;
 }) {
-  const isRental = property.operation === "alquiler";
   const image = property.images[0];
 
   return (
@@ -23,7 +21,7 @@ export default function PropertyCard({
             alt={property.title}
             fill
             sizes="(max-width: 768px) 100vw, 33vw"
-            priority={priority}
+            loading={priority ? "eager" : "lazy"}
             className="object-cover transition-transform duration-300 group-hover:scale-105"
           />
         ) : (
@@ -31,12 +29,13 @@ export default function PropertyCard({
             Sin imagen
           </div>
         )}
-        <span
-          className={`absolute top-3 left-3 rounded px-3 py-1 text-xs font-semibold text-charcoal ${
-            isRental ? "bg-charcoal text-white" : "bg-gold"
-          }`}
-        >
-          {property.operation.toUpperCase()}
+        <span className="absolute top-3 left-3 flex gap-2">
+          <span className="rounded bg-gold px-4 py-1.5 text-sm font-bold text-charcoal">
+            {property.operation.toUpperCase()}
+          </span>
+          <span className="rounded bg-charcoal px-4 py-1.5 text-sm font-bold text-white">
+            {formatPropertyType(property.propertyType)}
+          </span>
         </span>
       </Link>
 
@@ -52,13 +51,6 @@ export default function PropertyCard({
           <span className="text-lg font-semibold text-charcoal">
             {formatPrice(property)}
           </span>
-          <button
-            type="button"
-            aria-label="Agregar a favoritos"
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-line text-charcoal transition-colors hover:text-gold"
-          >
-            <Heart className="h-5 w-5" aria-hidden />
-          </button>
         </div>
       </div>
     </article>

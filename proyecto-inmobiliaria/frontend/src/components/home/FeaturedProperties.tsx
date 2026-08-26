@@ -17,7 +17,7 @@ export default async function FeaturedProperties() {
   return (
     <section className="container-page space-y-8 py-16">
       <div className="flex flex-wrap items-center justify-between gap-4">
-        <h2 className="section-title">Propiedades destacadas</h2>
+        <h2 className="section-title">Últimos ingresos</h2>
         <Link
           href="/properties"
           className="inline-flex items-center gap-2 text-sm font-semibold text-gold hover:text-gold-dark"

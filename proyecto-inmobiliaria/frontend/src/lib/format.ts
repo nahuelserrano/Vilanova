@@ -17,6 +17,25 @@ export function formatPrice(property: PublicProperty): string {
   return `${currencyLabel} ${value}`;
 }
 
+const PROPERTY_TYPE_ACCENTS: Record<string, string> = {
+  casa: "Casa",
+  departamento: "Departamento",
+  campo: "Campo",
+  local_comercial: "Local comercial",
+  lote: "Lote",
+  quinta: "Quinta",
+  galpon: "Galpón",
+  cabanas_hoteles_otros: "Cabañas, hoteles y otros",
+  fondo_comercio: "Fondo de comercio",
+  cochera: "Cochera",
+  al_pozo: "Al pozo",
+};
+
+export function formatPropertyType(propertyType: string): string {
+  const key = propertyType.trim().toLowerCase();
+  return PROPERTY_TYPE_ACCENTS[key] ?? key.charAt(0).toUpperCase() + key.slice(1);
+}
+
 export function formatFeatures(property: PublicProperty): string {
   const f = property.features;
   const parts: string[] = [];
