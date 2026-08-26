@@ -1,13 +1,13 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { getProperties } from "@/lib/api";
+import { getFeaturedProperties } from "@/lib/api";
 import PropertyCard from "@/components/home/PropertyCard";
 
 export default async function FeaturedProperties() {
   let data;
 
   try {
-    data = await getProperties({ page: 1, pageSize: 3 });
+    data = await getFeaturedProperties();
   } catch {
     data = null;
   }

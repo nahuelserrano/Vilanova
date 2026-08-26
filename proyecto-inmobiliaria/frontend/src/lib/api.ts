@@ -34,6 +34,12 @@ export async function getProperty(id: string): Promise<PublicProperty> {
   return request<PublicProperty>(`properties/${id}`);
 }
 
+export const getFeaturedProperties = unstable_cache(
+  async (): Promise<PaginatedProperties> => getProperties({ page: 1, pageSize: 3 }),
+  ["featured-properties"],
+  { revalidate: 3600 },
+);
+
 export const getAvailablePropertyTypes = unstable_cache(
   async (): Promise<string[]> => {
     const types = new Set<string>();

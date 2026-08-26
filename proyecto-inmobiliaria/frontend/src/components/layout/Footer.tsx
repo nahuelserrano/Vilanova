@@ -1,19 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Clock, Mail, MapPin, Phone } from "lucide-react";
+import { CONTACT } from "@/lib/contact";
 
 const QUICK_LINKS = [
   { label: "Inicio", href: "/" },
   { label: "Propiedades", href: "/properties" },
   { label: "Nosotros", href: "/nosotros" },
-  { label: "Contacto", href: "/contacto" },
-];
-
-const CONTACT = [
-  { icon: MapPin, text: "Paz 578, Tandil" },
-  { icon: Phone, text: "2494 231265" },
-  { icon: Mail, text: "propiedadesvilanova@gmail.com" },
-  { icon: Clock, text: "Lunes a viernes de 9 a 12:30 y de 14 a 17 h." },
+  { label: "Contacto", href: "/#contacto" },
 ];
 
 export default function Footer() {

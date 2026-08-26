@@ -5,7 +5,7 @@ const NAV_ITEMS = [
   { label: "Inicio", href: "/" },
   { label: "Propiedades", href: "/properties" },
   { label: "Nosotros", href: "/nosotros" },
-  { label: "Contacto", href: "/contacto" },
+  { label: "Contacto", href: "/#contacto" },
 ];
 
 export default function Header() {
