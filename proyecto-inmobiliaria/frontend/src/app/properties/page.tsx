@@ -25,7 +25,7 @@ export default async function PropertiesPage({
   const { items, pagination } = await getProperties(buildPropertiesQuery(filters, page));
 
   return (
-    <section className="mx-auto w-full max-w-[96rem] px-4 py-16 sm:px-6 lg:px-8">
+    <section className="mx-auto w-full max-w-384 px-4 py-16 sm:px-6 lg:px-8">
       <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
         <div className="max-w-2xl">
           <h1 className="section-title font-bold">Propiedades</h1>
