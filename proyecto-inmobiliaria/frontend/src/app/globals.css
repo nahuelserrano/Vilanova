@@ -1,14 +1,14 @@
 @import "tailwindcss";
 
 @theme {
-  --color-cream: #fcedd5;
-  --color-cream-soft: #fcf8ee;
-  --color-fade: #fcedd5;
-  --color-gold: #e8b414;
-  --color-gold-dark: #cfa10d;
-  --color-charcoal: #262626;
+  --color-cream: #f5eee1;
+  --color-cream-soft: #faf5eb;
+  --color-fade: #f5eee1;
+  --color-gold: #f0bc1e;
+  --color-gold-dark: #e0ad10;
+  --color-charcoal: #2b2a25;
   --color-ink: #1e1e1e;
-  --color-line: #e4dcc8;
+  --color-line: #e6ddc6;
 
   --font-sans: var(--font-inter);
 }

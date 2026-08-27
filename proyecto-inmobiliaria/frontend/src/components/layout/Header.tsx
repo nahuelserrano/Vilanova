@@ -10,7 +10,7 @@ const NAV_ITEMS = [
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-50 bg-cream/90 backdrop-blur">
+    <header className="sticky top-0 z-50 bg-cream/70 backdrop-blur">
       <div className="flex h-28 items-center justify-between px-6 sm:px-12 lg:px-16">
         <Link href="/" className="ml-4 flex translate-y-2 items-center sm:ml-5 lg:ml-6" aria-label="Vilanova Propiedades">
           <Image
