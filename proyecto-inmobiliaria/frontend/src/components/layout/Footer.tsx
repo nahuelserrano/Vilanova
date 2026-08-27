@@ -1,6 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import { CONTACT } from "@/lib/contact";
+import { Clock, Mail, MapPin, Phone } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+import { CONTACT } from "@/features/contact/contact-info";
+
+const CONTACT_ICONS: LucideIcon[] = [MapPin, Phone, Mail, Clock];
 
 const QUICK_LINKS = [
   { label: "Inicio", href: "/" },
@@ -28,10 +32,12 @@ export default function Footer() {
         <div className="space-y-5">
           <h3 className="text-lg text-charcoal">Contacto</h3>
           <ul className="space-y-4">
-            {CONTACT.map(({ icon: Icon, text, href }) => (
-              <li key={text} className="flex items-start gap-3 text-sm text-charcoal">
-                <Icon className="mt-0.5 h-5 w-5 shrink-0 text-gold" aria-hidden />
-                {href ? (
+            {CONTACT.map(({ text, href }, index) => {
+              const Icon = CONTACT_ICONS[index];
+              return (
+                <li key={text} className="flex items-start gap-3 text-sm text-charcoal">
+                  <Icon className="mt-0.5 h-5 w-5 shrink-0 text-gold" aria-hidden />
+                  {href ? (
                   <a
                     href={href}
                     target="_blank"
@@ -43,8 +49,9 @@ export default function Footer() {
                 ) : (
                   <span>{text}</span>
                 )}
-              </li>
-            ))}
+                  </li>
+                );
+              })}
           </ul>
         </div>
 

@@ -24,16 +24,16 @@ export class PropertiesService {
       'https://www.tandilprop.com.ar',
     );
     this.slug = this.configService.get<string>('INMOBILIARIA_SLUG', '');
-    console.log('📌 Variables de entorno cargadas:', {
-    baseUrl: this.baseUrl,
-    slug: this.slug,
-  });
+    this.logger.log('Variables de entorno cargadas', {
+      baseUrl: this.baseUrl,
+      slug: this.slug,
+    });
   }
 
   async findAll(query: GetPropertiesQueryDto): Promise<PaginatedPropertiesResponse> {
     try {
       const url = `${this.baseUrl}/api/public/inmobiliarias/${this.slug}/properties`;
-      
+
       const response = await firstValueFrom(
         this.httpService.get<PaginatedPropertiesResponse>(url, {
           params: query,
@@ -71,7 +71,10 @@ export class PropertiesService {
       const data = error.response.data;
 
       if (status === HttpStatus.NOT_FOUND) {
-        throw new HttpException(data?.message || 'Propiedad o inmobiliaria no encontrada', HttpStatus.NOT_FOUND);
+        throw new HttpException(
+          data?.message || 'Propiedad o inmobiliaria no encontrada',
+          HttpStatus.NOT_FOUND,
+        );
       }
       if (status === HttpStatus.BAD_REQUEST) {
         throw new HttpException(data || 'Parámetros de consulta inválidos', HttpStatus.BAD_REQUEST);

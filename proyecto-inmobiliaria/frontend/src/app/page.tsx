@@ -1,10 +1,8 @@
-import Hero from "@/components/home/Hero";
-import SearchBar from "@/components/home/SearchBar";
-import Categories from "@/components/home/Categories";
-import FeaturedProperties from "@/components/home/FeaturedProperties";
-import Contact from "@/components/home/Contact";
-
-export const dynamic = "force-dynamic";
+import Hero from "@/features/properties/Hero";
+import SearchBar from "@/features/properties/SearchBar";
+import Categories from "@/features/properties/Categories";
+import FeaturedProperties from "@/features/properties/FeaturedProperties";
+import Contact from "@/features/contact/Contact";
 
 export default function Home() {
   return (

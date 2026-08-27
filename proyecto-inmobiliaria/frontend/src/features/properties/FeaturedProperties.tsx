@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { getFeaturedProperties } from "@/lib/api";
-import PropertyCard from "@/components/home/PropertyCard";
+import { getFeaturedProperties } from "./api";
+import PropertyCard from "./PropertyCard";
 
 export default async function FeaturedProperties() {
   let data;

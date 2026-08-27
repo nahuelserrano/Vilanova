@@ -1,6 +1,7 @@
 import { unstable_cache } from "next/cache";
 import { API_URL } from "@/lib/env";
-import type { PaginatedProperties, PublicProperty } from "@/lib/types";
+import type { PaginatedProperties, PublicProperty } from "./types";
+
 
 async function request<T>(path: string): Promise<T> {
   const res = await fetch(`${API_URL}/${path}`, {
@@ -37,27 +38,5 @@ export async function getProperty(id: string): Promise<PublicProperty> {
 export const getFeaturedProperties = unstable_cache(
   async (): Promise<PaginatedProperties> => getProperties({ page: 1, pageSize: 3 }),
   ["featured-properties"],
-  { revalidate: 3600 },
-);
-
-export const getAvailablePropertyTypes = unstable_cache(
-  async (): Promise<string[]> => {
-    const types = new Set<string>();
-    let page = 1;
-
-    while (true) {
-      const data = await getProperties({ page, pageSize: 50 });
-
-      for (const property of data?.items ?? []) {
-        if (property.propertyType) types.add(property.propertyType);
-      }
-
-      if (page >= data.pagination.totalPages) break;
-      page += 1;
-    }
-
-    return Array.from(types);
-  },
-  ["property-types"],
   { revalidate: 3600 },
 );

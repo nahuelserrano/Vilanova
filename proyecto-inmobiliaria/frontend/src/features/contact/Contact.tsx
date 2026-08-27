@@ -1,7 +1,10 @@
 "use client";
 
-import { MessageCircle, Send, ShieldCheck } from "lucide-react";
-import { CONTACT } from "@/lib/contact";
+import { Clock, Mail, MapPin, MessageCircle, Phone, Send, ShieldCheck } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+import { CONTACT } from "./contact-info";
+
+const CONTACT_ICONS: LucideIcon[] = [MapPin, Phone, Mail, Clock];
 
 const inputClass =
   "w-full rounded-lg border border-line bg-cream-soft px-4 py-3 text-sm text-charcoal focus:border-gold focus:outline-none";
@@ -21,11 +24,13 @@ export default function Contact() {
           </p>
 
           <ul className="space-y-5">
-            {CONTACT.map(({ icon: Icon, text, href }, index) => (
-              <li key={`${text}-${index}`} className="flex items-center gap-4">
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-line bg-cream-soft">
-                  <Icon className="h-5 w-5 text-gold" aria-hidden />
-                </span>
+            {CONTACT.map(({ text, href }, index) => {
+              const Icon = CONTACT_ICONS[index];
+              return (
+                <li key={`${text}-${index}`} className="flex items-center gap-4">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-line bg-cream-soft">
+                    <Icon className="h-5 w-5 text-gold" aria-hidden />
+                  </span>
                 {href ? (
                   <a
                     href={href}
@@ -38,8 +43,9 @@ export default function Contact() {
                 ) : (
                   <span className="text-sm font-medium text-charcoal">{text}</span>
                 )}
-              </li>
-            ))}
+                  </li>
+                );
+            })}
           </ul>
         </div>
 

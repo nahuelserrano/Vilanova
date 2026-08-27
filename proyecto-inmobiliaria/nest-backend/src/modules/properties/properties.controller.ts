@@ -11,9 +11,7 @@ export class PropertiesController {
   constructor(private readonly propertiesService: PropertiesService) {}
 
   @Get()
-  async findAll(
-    @Query() query: GetPropertiesQueryDto,
-  ): Promise<PaginatedPropertiesResponse> {
+  async findAll(@Query() query: GetPropertiesQueryDto): Promise<PaginatedPropertiesResponse> {
     return this.propertiesService.findAll(query);
   }
 

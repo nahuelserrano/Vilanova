@@ -1,4 +1,4 @@
-import type { PublicProperty } from "@/lib/types";
+import type { PublicProperty } from "./types";
 
 export function formatPrice(property: PublicProperty): string {
   const { currency, amount, hidden } = property.price;
@@ -16,6 +16,20 @@ export function formatPrice(property: PublicProperty): string {
 
   return `${currencyLabel} ${value}`;
 }
+
+export const PROPERTY_TYPES: string[] = [
+  "casa",
+  "departamento",
+  "local_comercial",
+  "campo",
+  "lote",
+  "quinta",
+  "galpon",
+  "cabanas_hoteles_otros",
+  "fondo_comercio",
+  "cochera",
+  "al_pozo",
+];
 
 const PROPERTY_TYPE_ACCENTS: Record<string, string> = {
   casa: "Casa",

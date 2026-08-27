@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { PublicProperty } from "@/lib/types";
-import { formatFeatures, formatPrice, formatPropertyType } from "@/lib/format";
+import type { PublicProperty } from "./types";
+import { formatFeatures, formatPrice, formatPropertyType } from "./format";
 
 export default function PropertyCard({
   property,

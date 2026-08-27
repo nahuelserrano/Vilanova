@@ -1,19 +1,8 @@
 import Link from "next/link";
 import { Search } from "lucide-react";
-import { getAvailablePropertyTypes } from "@/lib/api";
-import { formatPropertyType } from "@/lib/format";
+import { formatPropertyType, PROPERTY_TYPES } from "./format";
 
-const FALLBACK_TYPES = ["Casas", "Departamentos", "Locales"];
-
-export default async function SearchBar() {
-  let types: string[];
-
-  try {
-    types = await getAvailablePropertyTypes();
-  } catch {
-    types = FALLBACK_TYPES;
-  }
-
+export default function SearchBar() {
   return (
     <section className="container-page relative z-10 -mt-12 pb-10">
       <div className="grid gap-6 rounded-2xl bg-white p-6 shadow-lg shadow-charcoal/5 md:grid-cols-[1fr_1fr_1fr_auto] md:items-end">
@@ -22,9 +11,9 @@ export default async function SearchBar() {
             Operación
           </span>
           <select className="w-full rounded-lg border border-line bg-cream-soft px-4 py-3 text-sm text-charcoal focus:outline-none">
-            <option>Todas</option>
-            <option>Venta</option>
-            <option>Alquiler</option>
+            <option value="">Todas</option>
+            <option value="venta">Venta</option>
+            <option value="alquiler">Alquiler</option>
           </select>
         </label>
 
@@ -34,7 +23,7 @@ export default async function SearchBar() {
           </span>
           <select className="w-full rounded-lg border border-line bg-cream-soft px-4 py-3 text-sm text-charcoal focus:outline-none">
             <option value="">Todas</option>
-            {types.map((type) => (
+            {PROPERTY_TYPES.map((type) => (
               <option key={type} value={type}>
                 {formatPropertyType(type)}
               </option>
@@ -48,8 +37,8 @@ export default async function SearchBar() {
           </span>
           <div className="flex gap-2">
             <select className="w-24 rounded-lg border border-line bg-cream-soft px-3 py-3 text-sm text-charcoal focus:outline-none">
-              <option>USD</option>
-              <option>ARS</option>
+              <option value="USD">USD</option>
+              <option value="ARS">ARS</option>
             </select>
             <input
               type="number"
