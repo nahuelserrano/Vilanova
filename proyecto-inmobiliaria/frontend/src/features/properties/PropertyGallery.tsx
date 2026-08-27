@@ -38,7 +38,7 @@ export default function PropertyGallery({
             alt={alt}
             fill
             sizes="(max-width: 768px) 100vw, 33vw"
-            priority={priority}
+            loading={priority ? "eager" : "lazy"}
             className="object-cover transition-transform duration-300 group-hover:scale-105"
           />
         ) : (

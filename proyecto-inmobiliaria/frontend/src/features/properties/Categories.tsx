@@ -1,11 +1,27 @@
 import Link from "next/link";
 import { ArrowRight, Building2, Home, Key, Store } from "lucide-react";
+import { buildSearchString, type Filters } from "./filters";
 
-const CATEGORIES = [
-  { icon: Home, label: "Casas", text: "Hogares para toda la vida." },
-  { icon: Building2, label: "Departamentos", text: "Comodidad en cada rincón." },
-  { icon: Key, label: "Alquileres", text: "Opciones para cada etapa." },
-  { icon: Store, label: "Locales", text: "El espacio ideal para tu negocio." },
+const CATEGORIES: { icon: typeof Home; label: string; text: string; filters: Filters }[] = [
+  { icon: Home, label: "Casas", text: "Hogares para toda la vida.", filters: { tipo: "casa" } },
+  {
+    icon: Building2,
+    label: "Departamentos",
+    text: "Comodidad en cada rincón.",
+    filters: { tipo: "departamento" },
+  },
+  {
+    icon: Key,
+    label: "Alquileres",
+    text: "Opciones para cada etapa.",
+    filters: { operacion: "alquiler" },
+  },
+  {
+    icon: Store,
+    label: "Locales",
+    text: "El espacio ideal para tu negocio.",
+    filters: { tipo: "local_comercial" },
+  },
 ];
 
 export default function Categories() {
@@ -17,10 +33,10 @@ export default function Categories() {
       </div>
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        {CATEGORIES.map(({ icon: Icon, label, text }) => (
+        {CATEGORIES.map(({ icon: Icon, label, text, filters }) => (
           <Link
             key={label}
-            href="/properties"
+            href={`/properties${buildSearchString(filters)}`}
             className="group flex flex-col items-center gap-4 rounded-2xl border border-line bg-cream-soft p-8 text-center shadow-sm transition-shadow hover:shadow-md"
           >
             <Icon

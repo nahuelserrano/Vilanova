@@ -11,7 +11,7 @@ export default function Hero() {
           alt="Interior de un hogar luminoso"
           width={1535}
           height={1024}
-          priority
+          loading="eager"
           className="h-full w-auto"
         />
       </div>
@@ -37,7 +37,7 @@ export default function Hero() {
             src="/background-hero.png"
             alt="Interior de un hogar luminoso"
             fill
-            priority
+            loading="eager"
             sizes="(max-width: 640px) calc(100vw - 2rem), (max-width: 1024px) calc(100vw - 3rem), 100vw"
             className="rounded-3xl object-cover"
           />

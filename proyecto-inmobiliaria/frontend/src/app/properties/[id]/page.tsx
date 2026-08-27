@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, MapPin } from "lucide-react";
 import { getProperty } from "@/features/properties/api";
+import type { RawSearchParams } from "@/features/properties/filters";
 import { formatPrice, formatPropertyType } from "@/features/properties/format";
 import DetailGallery from "@/features/properties/DetailGallery";
 import PropertyFeatures from "@/features/properties/PropertyFeatures";
@@ -24,19 +25,25 @@ export async function generateMetadata({
 
 export default async function PropertyPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ id: string }>;
+  searchParams: Promise<RawSearchParams>;
 }) {
   const { id } = await params;
+  const { from } = await searchParams;
   const property = await getProperty(id).catch(() => notFound());
 
+  const backHref =
+    typeof from === "string" && from.startsWith("/properties") ? from : "/properties";
   const title = property.location.address || property.title;
   const { lat, lng } = property.location.coordinates ?? {};
 
   return (
     <section className="mx-auto w-full max-w-[90rem] px-3 py-16 sm:px-4 lg:px-6">
       <Link
-        href="/properties"
+        href={backHref}
+        scroll={false}
         className="inline-flex items-center gap-2 text-sm font-semibold text-gold hover:text-gold-dark"
       >
         <ArrowLeft className="h-4 w-4" aria-hidden />

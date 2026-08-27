@@ -6,16 +6,22 @@ import PropertyGallery from "./PropertyGallery";
 export default function PropertyCard({
   property,
   priority = false,
+  backHref,
 }: {
   property: PublicProperty;
   priority?: boolean;
+  backHref?: string;
 }) {
+  const detailHref = backHref
+    ? `/properties/${property.id}?from=${encodeURIComponent(backHref)}`
+    : `/properties/${property.id}`;
+
   return (
     <article className="group flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm transition-shadow hover:shadow-md">
       <PropertyGallery
         images={property.images}
         alt={property.title}
-        href={`/properties/${property.id}`}
+        href={detailHref}
         priority={priority}
       >
         <span className="absolute top-3 left-3 flex gap-2">
@@ -30,7 +36,7 @@ export default function PropertyCard({
 
       <div className="flex flex-1 flex-col gap-2 p-5">
         <h3 className="text-xl text-charcoal">
-          <Link href={`/properties/${property.id}`} className="hover:text-gold">
+          <Link href={detailHref} className="hover:text-gold">
             {property.title}
           </Link>
         </h3>

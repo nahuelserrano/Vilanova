@@ -18,7 +18,7 @@ export default function Header() {
             alt="Vilanova Propiedades"
             width={831}
             height={300}
-            priority
+            loading="eager"
             className="h-28 w-auto sm:h-32"
           />
         </Link>

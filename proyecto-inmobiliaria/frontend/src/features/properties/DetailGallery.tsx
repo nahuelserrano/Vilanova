@@ -30,7 +30,7 @@ export default function DetailGallery({
             src={image}
             alt={alt}
             fill
-            priority={priority}
+            loading={priority ? "eager" : "lazy"}
             sizes="(max-width: 1024px) 100vw, 60vw"
             className="object-cover object-center"
           />
