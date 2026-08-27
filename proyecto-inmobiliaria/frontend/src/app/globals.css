@@ -32,6 +32,10 @@ body {
     @apply bg-gold text-charcoal hover:bg-gold-dark;
   }
 
+  .btn-outline {
+    @apply border border-line bg-white text-charcoal hover:border-gold hover:text-gold;
+  }
+
   .section-title {
     @apply text-3xl text-charcoal sm:text-4xl;
   }

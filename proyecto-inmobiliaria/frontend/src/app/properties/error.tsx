@@ -17,7 +17,7 @@ export default function PropertiesError({ reset }: {
           <button type="button" onClick={reset} className="btn btn-gold">
             Reintentar
           </button>
-          <Link href="/" className="btn border border-line bg-cream-soft text-charcoal hover:border-gold">
+          <Link href="/" className="btn btn-outline">
             Volver al inicio
           </Link>
         </div>

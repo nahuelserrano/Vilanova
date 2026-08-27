@@ -94,6 +94,12 @@ export interface PublicPropertyDto {
   features: PropertyFeatures;
   images: string[];
   publishedAt: string;
+  condition?: string;
+  antiquityYears?: number;
+  orientation?: string;
+  services?: string[];
+  expensas?: string;
+  isMortgageEligible?: boolean;
 }
 
 export interface PaginatedPropertiesResponse {
