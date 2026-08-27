@@ -26,7 +26,7 @@ export default function Hero() {
           <p className="max-w-md text-lg text-charcoal/80">
             Más de 75 años ayudando a familias a encontrar el lugar perfecto.
           </p>
-          <Link href="/properties" className="btn btn-gold self-start">
+          <Link href="/propiedades" className="btn btn-gold self-start">
             <ArrowRight className="h-4 w-4" aria-hidden />
             Ver propiedades
           </Link>

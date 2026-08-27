@@ -1,20 +1,17 @@
 import Link from "next/link";
 import type { PublicProperty } from "./types";
-import { formatFeatures, formatPrice, formatPropertyType } from "./format";
+import { flattenSlug, formatFeatures, formatPrice, formatPropertyType } from "./format";
 import PropertyGallery from "./PropertyGallery";
 
 export default function PropertyCard({
   property,
   priority = false,
-  backHref,
 }: {
   property: PublicProperty;
   priority?: boolean;
-  backHref?: string;
 }) {
-  const detailHref = backHref
-    ? `/properties/${property.id}?from=${encodeURIComponent(backHref)}`
-    : `/properties/${property.id}`;
+  const slugKey = property.slug ? flattenSlug(property.slug) : property.id;
+  const detailHref = `/propiedades/${slugKey}`;
 
   return (
     <article className="group flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm transition-shadow hover:shadow-md">

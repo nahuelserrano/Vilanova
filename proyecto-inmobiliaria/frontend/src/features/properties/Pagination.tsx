@@ -38,7 +38,7 @@ export default function Pagination({
     <nav aria-label="Paginación" className="mt-12 flex items-center justify-center gap-2">
       {page > 1 ? (
         <Link
-          href={`/properties${buildSearchString(filters, page - 1)}`}
+          href={`/propiedades${buildSearchString(filters, page - 1)}`}
           className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-line text-charcoal transition-colors hover:border-gold hover:text-gold"
           aria-label="Anterior"
         >
@@ -58,7 +58,7 @@ export default function Pagination({
         ) : (
           <Link
             key={item}
-            href={`/properties${buildSearchString(filters, item)}`}
+            href={`/propiedades${buildSearchString(filters, item)}`}
             aria-current={item === page ? "page" : undefined}
             className={`inline-flex h-10 w-10 items-center justify-center rounded-lg text-sm font-semibold transition-colors ${
               item === page
@@ -73,7 +73,7 @@ export default function Pagination({
 
       {page < totalPages ? (
         <Link
-          href={`/properties${buildSearchString(filters, page + 1)}`}
+          href={`/propiedades${buildSearchString(filters, page + 1)}`}
           className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-line text-charcoal transition-colors hover:border-gold hover:text-gold"
           aria-label="Siguiente"
         >

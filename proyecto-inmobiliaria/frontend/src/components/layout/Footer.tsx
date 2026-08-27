@@ -8,7 +8,7 @@ const CONTACT_ICONS: LucideIcon[] = [MapPin, Phone, Mail, Clock];
 
 const QUICK_LINKS = [
   { label: "Inicio", href: "/" },
-  { label: "Propiedades", href: "/properties" },
+  { label: "Propiedades", href: "/propiedades" },
   { label: "Nosotros", href: "/nosotros" },
   { label: "Contacto", href: "/#contacto" },
 ];

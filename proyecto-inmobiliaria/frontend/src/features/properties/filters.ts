@@ -56,7 +56,7 @@ function toParams(filters: Filters, page?: number): URLSearchParams {
   if (filters.maxValue) params.set("maxValue", filters.maxValue);
   if (filters.bedrooms) params.set("bedrooms", filters.bedrooms);
   if (filters.garage) params.set("garage", "true");
-  if (page) params.set("page", String(page));
+  if (page && page !== 1) params.set("page", String(page));
 
   return params;
 }
