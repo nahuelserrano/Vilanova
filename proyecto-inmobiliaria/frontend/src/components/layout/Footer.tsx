@@ -16,11 +16,11 @@ export default function Footer() {
         <div className="flex items-center md:self-center">
           <Link href="/" aria-label="Vilanova Propiedades">
             <Image
-              src="https://res.cloudinary.com/dz7rrw0wa/image/upload/v1779378204/logos/logo_1779378204498.png"
+              src="/logo-cloudinary.png"
               alt="Vilanova Propiedades"
-              width={831}
-              height={300}
-              className="h-40 w-auto sm:h-48"
+              width={1587}
+              height={991}
+              className="h-35 w-auto sm:h-40"
             />
           </Link>
         </div>
