@@ -1,0 +1,43 @@
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { getFeaturedProperties } from "./api";
+import PropertyCard from "./PropertyCard";
+
+export default async function FeaturedProperties() {
+  let data;
+
+  try {
+    data = await getFeaturedProperties();
+  } catch {
+    data = null;
+  }
+
+  const items = data?.items ?? [];
+
+  return (
+    <section className="container-page space-y-8 py-16">
+      <div className="flex flex-wrap items-center justify-between gap-4">
+        <h2 className="section-title">Últimos ingresos</h2>
+        <Link
+          href="/properties"
+          className="inline-flex items-center gap-2 text-sm font-semibold text-gold hover:text-gold-dark"
+        >
+          Ver todas las propiedades
+          <ArrowRight className="h-4 w-4" aria-hidden />
+        </Link>
+      </div>
+
+      {items.length > 0 ? (
+        <div className="grid gap-6 md:grid-cols-3">
+          {items.map((property, index) => (
+            <PropertyCard key={property.id} property={property} priority={index === 0} />
+          ))}
+        </div>
+      ) : (
+        <div className="rounded-2xl border border-line bg-cream-soft p-10 text-center text-charcoal/70">
+          No hay propiedades disponibles en este momento.
+        </div>
+      )}
+    </section>
+  );
+}
