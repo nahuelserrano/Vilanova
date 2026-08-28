@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 
-const DETAIL_LINK = /^\/properties\/[^/?]+/;
+const DETAIL_LINK = /^\/propiedades\/[^/?]+/;
 
 let savedY: number | null = null;
 

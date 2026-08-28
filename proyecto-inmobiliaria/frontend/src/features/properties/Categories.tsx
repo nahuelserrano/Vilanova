@@ -36,7 +36,7 @@ export default function Categories() {
         {CATEGORIES.map(({ icon: Icon, label, text, filters }) => (
           <Link
             key={label}
-            href={`/properties${buildSearchString(filters)}`}
+            href={`/propiedades${buildSearchString(filters)}`}
             className="group flex flex-col items-center gap-4 rounded-2xl border border-line bg-cream-soft p-8 text-center shadow-sm transition-shadow hover:shadow-md"
           >
             <Icon

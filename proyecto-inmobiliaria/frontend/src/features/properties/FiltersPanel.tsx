@@ -32,7 +32,7 @@ export default function FiltersPanel({ initialFilters }: { initialFilters: Filte
     setMaxValue("");
     setBedrooms("");
     setGarage(false);
-    router.push("/properties");
+    router.push("/propiedades");
   }
 
   function apply(e: React.FormEvent) {
@@ -47,7 +47,7 @@ export default function FiltersPanel({ initialFilters }: { initialFilters: Filte
     if (maxValue) filters.maxValue = maxValue;
     if (minValue || maxValue) filters.currency = currency;
 
-    router.push(`/properties${buildSearchString(filters)}`);
+    router.push(`/propiedades${buildSearchString(filters)}`);
   }
 
   return (

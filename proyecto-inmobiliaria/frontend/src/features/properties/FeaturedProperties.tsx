@@ -19,7 +19,7 @@ export default async function FeaturedProperties() {
       <div className="flex flex-wrap items-center justify-between gap-4">
         <h2 className="section-title">Últimos ingresos</h2>
         <Link
-          href="/properties"
+          href="/propiedades"
           className="inline-flex items-center gap-2 text-sm font-semibold text-gold hover:text-gold-dark"
         >
           Ver todas las propiedades

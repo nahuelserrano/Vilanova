@@ -24,7 +24,7 @@ export default function SearchBar() {
     if (maxValue) filters.maxValue = maxValue;
     if (maxValue) filters.currency = currency;
 
-    router.push(`/properties${buildSearchString(filters)}`);
+    router.push(`/propiedades${buildSearchString(filters)}`);
   }
 
   return (
