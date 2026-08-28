@@ -10,8 +10,8 @@ async function bootstrap() {
   const frontendUrl = configService.get<string>('FRONTEND_URL', 'http://localhost:3000');
 
   app.enableCors({
-    origin: frontendUrl,
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    origin: 'https://vilanova-pink.vercel.app',
+    methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
     credentials: true,
   });
 
