@@ -29,46 +29,48 @@ export default function Footer() {
           </Link>
         </div>
 
-        <div className="space-y-5">
-          <h3 className="text-lg text-charcoal">Contacto</h3>
-          <ul className="space-y-4">
-            {CONTACT.map(({ text, href }, index) => {
-              const Icon = CONTACT_ICONS[index];
-              return (
-                <li key={text} className="flex items-start gap-3 text-sm text-charcoal">
-                  <Icon className="mt-0.5 h-5 w-5 shrink-0 text-gold" aria-hidden />
-                  {href ? (
-                  <a
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="transition-colors hover:text-gold"
-                  >
-                    {text}
-                  </a>
-                ) : (
-                  <span>{text}</span>
-                )}
-                  </li>
-                );
-              })}
-          </ul>
-        </div>
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-24">
+          <div className="space-y-5">
+            <h3 className="text-lg text-charcoal">Contacto</h3>
+            <ul className="space-y-4">
+              {CONTACT.map(({ text, href }, index) => {
+                const Icon = CONTACT_ICONS[index];
+                return (
+                  <li key={text} className="flex items-start gap-3 text-sm text-charcoal">
+                    <Icon className="mt-0.5 h-5 w-5 shrink-0 text-gold" aria-hidden />
+                    {href ? (
+                    <a
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="transition-colors hover:text-gold"
+                    >
+                      {text}
+                    </a>
+                  ) : (
+                    <span>{text}</span>
+                  )}
+                    </li>
+                  );
+                })}
+            </ul>
+          </div>
 
-        <div className="space-y-5">
-          <h3 className="text-lg text-charcoal">Enlaces rápidos</h3>
-          <ul className="space-y-2">
-            {QUICK_LINKS.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  className="text-sm text-charcoal transition-colors hover:text-gold"
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <div className="space-y-5">
+            <h3 className="text-lg text-charcoal">Enlaces rápidos</h3>
+            <ul className="space-y-2">
+              {QUICK_LINKS.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-sm text-charcoal transition-colors hover:text-gold"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
 

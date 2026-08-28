@@ -38,12 +38,14 @@ export default async function PropertiesPage({
           </p>
         </div>
 
-        <ContactBanner
-          title="¿No encontrás lo que buscás?"
-          subtitle="Contanos y te ayudamos a encontrar tu próximo hogar."
-          actionLabel="Contáctanos"
-          actionHref="/contacto"
-        />
+        <div className="hidden lg:block">
+          <ContactBanner
+            title="¿No encontrás lo que buscás?"
+            subtitle="Contanos y te ayudamos a encontrar tu próximo hogar."
+            actionLabel="Contáctanos"
+            actionHref="/contacto"
+          />
+        </div>
       </div>
 
       <div className="mt-10 grid gap-8 lg:grid-cols-[300px_1fr]">
@@ -84,6 +86,15 @@ export default async function PropertiesPage({
           filters={filters}
         />
       ) : null}
+
+      <div className="mt-10 lg:hidden">
+        <ContactBanner
+          title="¿No encontrás lo que buscás?"
+          subtitle="Contanos y te ayudamos a encontrar tu próximo hogar."
+          actionLabel="Contáctanos"
+          actionHref="/contacto"
+        />
+      </div>
     </section>
   );
 }
