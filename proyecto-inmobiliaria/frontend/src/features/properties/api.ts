@@ -28,11 +28,11 @@ export async function getProperties(
   }
 
   const qs = params.toString();
-  return request<PaginatedProperties>(`properties${qs ? `?${qs}` : ""}`);
+  return request<PaginatedProperties>(`/properties${qs ? `?${qs}` : ""}`);
 }
 
 export async function getProperty(id: string): Promise<PublicProperty> {
-  return request<PublicProperty>(`properties/${id}`);
+  return request<PublicProperty>(`/properties/${id}`);
 }
 
 export const getFeaturedProperties = unstable_cache(
