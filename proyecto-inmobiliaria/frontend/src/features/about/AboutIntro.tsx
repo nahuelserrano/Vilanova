@@ -21,8 +21,8 @@ export default function AboutIntro() {
             conocimiento del mercado local.
           </p>
 
-          <Link href="/#contacto" className="btn btn-gold">
-            <MessageCircle className="h-4 w-4" aria-hidden />
+          <Link href="/#contacto" className="btn btn-gold px-8 py-4 text-base">
+            <MessageCircle className="h-5 w-5" aria-hidden />
             Contactanos
           </Link>
         </div>

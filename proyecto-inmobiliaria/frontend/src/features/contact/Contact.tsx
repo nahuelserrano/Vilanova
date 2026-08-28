@@ -14,7 +14,7 @@ export default function Contact() {
     <section id="contacto" className="container-page scroll-mt-28 pt-4 pb-16 sm:scroll-mt-32">
       <div className="grid items-center gap-12 lg:grid-cols-[1fr_1.2fr]">
         <div className="space-y-7">
-          <p className="text-sm font-semibold tracking-[0.2em] text-gold uppercase">
+          <p className="text-base font-semibold tracking-[0.2em] text-gold uppercase">
             Estamos para ayudarte
           </p>
           <h2 className="text-4xl font-bold text-charcoal sm:text-5xl">Hablemos</h2>
@@ -36,12 +36,12 @@ export default function Contact() {
                     href={href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-sm font-medium text-charcoal transition-colors hover:text-gold"
+                    className="text-base font-medium text-charcoal transition-colors hover:text-gold"
                   >
                     {text}
                   </a>
                 ) : (
-                  <span className="text-sm font-medium text-charcoal">{text}</span>
+                  <span className="text-base font-medium text-charcoal">{text}</span>
                 )}
                   </li>
                 );

@@ -5,11 +5,12 @@ import PropertyCard from "./PropertyCard";
 
 export default async function FeaturedProperties() {
   let data;
+  let hasError = false;
 
   try {
     data = await getFeaturedProperties();
   } catch {
-    data = null;
+    hasError = true;
   }
 
   const items = data?.items ?? [];
@@ -27,7 +28,19 @@ export default async function FeaturedProperties() {
         </Link>
       </div>
 
-      {items.length > 0 ? (
+      {hasError ? (
+        <div className="rounded-2xl border border-line bg-cream-soft p-10 text-center">
+          <p className="text-charcoal/70">
+            No pudimos cargar las propiedades en este momento.
+          </p>
+          <Link
+            href="/propiedades"
+            className="btn btn-outline mt-6 px-5 py-2.5 text-sm"
+          >
+            Ver todas las propiedades
+          </Link>
+        </div>
+      ) : items.length > 0 ? (
         <div className="grid gap-6 md:grid-cols-3">
           {items.map((property, index) => (
             <PropertyCard key={property.id} property={property} priority={index === 0} />

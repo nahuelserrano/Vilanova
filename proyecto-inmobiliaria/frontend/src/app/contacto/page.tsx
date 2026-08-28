@@ -1,3 +1,8 @@
+export const metadata = {
+  title: "Contacto | Vilanova Propiedades",
+  description: "Contactate con Vilanova Propiedades en Tandil.",
+};
+
 export default function ContactoPage() {
   return (
     <section className="container-page py-20">

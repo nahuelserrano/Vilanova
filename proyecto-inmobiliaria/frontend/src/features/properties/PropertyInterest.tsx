@@ -8,7 +8,7 @@ export default function PropertyInterest({ property }: { property: PublicPropert
     <div className="flex h-full flex-col justify-between rounded-2xl border border-line bg-cream-soft p-6">
       <div>
         <h2 className="text-xl font-semibold text-charcoal">¿Te interesa esta propiedad?</h2>
-        <p className="mt-2 text-sm text-charcoal/70">
+        <p className="mt-2 text-base text-charcoal/70">
           Escribinos y te ayudamos con tu consulta. Coordinamos visitas y resolvemos todas tus
           dudas.
         </p>
