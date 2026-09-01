@@ -18,7 +18,7 @@ export default function Contact() {
             Estamos para ayudarte
           </p>
           <h2 className="text-4xl font-bold text-charcoal sm:text-5xl">Hablemos</h2>
-          <p className="max-w-md text-charcoal/80">
+          <p className="max-w-md text-lg text-charcoal/80">
             Contanos qué estás buscando o en qué podemos ayudarte. Te
             respondemos el mismo día.
           </p>

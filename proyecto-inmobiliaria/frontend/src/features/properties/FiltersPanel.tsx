@@ -53,7 +53,7 @@ export default function FiltersPanel({ initialFilters }: { initialFilters: Filte
   return (
     <form
       onSubmit={apply}
-      className="rounded-2xl border border-line bg-white p-6 shadow-sm"
+      className="font-inter rounded-2xl border border-line bg-white p-6 shadow-sm"
     >
       <div className="flex items-center justify-between">
         <span className="flex items-center gap-2 text-lg font-semibold text-charcoal">

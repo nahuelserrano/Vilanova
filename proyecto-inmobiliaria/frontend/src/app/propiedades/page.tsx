@@ -33,7 +33,7 @@ export default async function PropertiesPage({
       <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
         <div className="max-w-2xl">
           <h1 className="section-title font-bold">Propiedades</h1>
-          <p className="mt-4 text-charcoal/70">
+          <p className="mt-4 text-lg text-charcoal/70">
             Explorá nuestros inmuebles disponibles y encontrá el lugar ideal para vos.
           </p>
         </div>

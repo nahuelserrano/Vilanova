@@ -45,6 +45,10 @@ body {
     @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
   }
 
+  .font-inter {
+    font-family: var(--font-inter);
+  }
+
   .btn {
     @apply inline-flex cursor-pointer items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-colors;
   }
