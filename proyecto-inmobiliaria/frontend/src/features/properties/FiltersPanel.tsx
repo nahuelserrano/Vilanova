@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { RotateCcw, Search, SlidersHorizontal } from "lucide-react";
+import { Spinner } from "@/components/ui/Spinner";
 import type { Currency, Operation } from "./types";
 import { formatPropertyType, PROPERTY_TYPES } from "./format";
 import { type Bedrooms, buildSearchString, type Filters } from "./filters";
@@ -15,6 +16,7 @@ const BEDROOM_OPTIONS: { value: Bedrooms; label: string }[] = [
 
 export default function FiltersPanel({ initialFilters }: { initialFilters: Filters }) {
   const router = useRouter();
+  const [isPending, startTransition] = useTransition();
 
   const [operacion, setOperacion] = useState<Operation | "">(initialFilters.operacion ?? "");
   const [tipo, setTipo] = useState(initialFilters.tipo ?? "");
@@ -47,7 +49,9 @@ export default function FiltersPanel({ initialFilters }: { initialFilters: Filte
     if (maxValue) filters.maxValue = maxValue;
     if (minValue || maxValue) filters.currency = currency;
 
-    router.push(`/propiedades${buildSearchString(filters)}`);
+    startTransition(() => {
+      router.push(`/propiedades${buildSearchString(filters)}`);
+    });
   }
 
   return (
@@ -191,9 +195,17 @@ export default function FiltersPanel({ initialFilters }: { initialFilters: Filte
         </label>
       </div>
 
-      <button type="submit" className="btn btn-gold mt-6 w-full">
-        <Search className="h-4 w-4" aria-hidden />
-        Aplicar filtros
+      <button
+        type="submit"
+        disabled={isPending}
+        className="btn btn-gold mt-6 flex w-full items-center justify-center gap-2 disabled:cursor-not-allowed disabled:opacity-70"
+      >
+        {isPending ? (
+          <Spinner className="h-4 w-4" />
+        ) : (
+          <Search className="h-4 w-4" aria-hidden />
+        )}
+        {isPending ? "Aplicando…" : "Aplicar filtros"}
       </button>
     </form>
   );

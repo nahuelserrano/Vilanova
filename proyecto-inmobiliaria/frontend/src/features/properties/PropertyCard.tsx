@@ -14,7 +14,7 @@ export default function PropertyCard({
   const detailHref = `/propiedades/${slugKey}`;
 
   return (
-    <article className="font-inter group flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm transition-shadow hover:shadow-md">
+    <article className="font-inter group flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm transition-[transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-md">
       <PropertyGallery
         images={property.images}
         alt={property.title}
