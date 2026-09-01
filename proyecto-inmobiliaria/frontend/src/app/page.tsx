@@ -6,6 +6,8 @@ import FeaturedProperties from "@/features/properties/FeaturedProperties";
 import Contact from "@/features/contact/Contact";
 import { getPropertyTypes } from "@/features/properties/api";
 
+export const revalidate = 300;
+
 function FeaturedSkeleton() {
   return (
     <section className="container-page space-y-8 py-16">
