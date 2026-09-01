@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { RotateCcw, Search, SlidersHorizontal } from "lucide-react";
 import { Spinner } from "@/components/ui/Spinner";
 import type { Currency, Operation } from "./types";
-import { formatPropertyType, PROPERTY_TYPES } from "./format";
+import { formatPropertyType, resolvePropertyTypes } from "./format";
 import { type Bedrooms, buildSearchString, type Filters } from "./filters";
 
 const BEDROOM_OPTIONS: { value: Bedrooms; label: string }[] = [
@@ -14,7 +14,13 @@ const BEDROOM_OPTIONS: { value: Bedrooms; label: string }[] = [
   { value: "3plus", label: "3+" },
 ];
 
-export default function FiltersPanel({ initialFilters }: { initialFilters: Filters }) {
+export default function FiltersPanel({
+  initialFilters,
+  propertyTypes,
+}: {
+  initialFilters: Filters;
+  propertyTypes: string[];
+}) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
 
@@ -100,7 +106,7 @@ export default function FiltersPanel({ initialFilters }: { initialFilters: Filte
             className="w-full cursor-pointer rounded-lg border border-line bg-cream-soft px-4 py-3 text-sm text-charcoal focus:outline-none"
           >
             <option value="">Todos</option>
-            {PROPERTY_TYPES.map((type) => (
+            {resolvePropertyTypes(propertyTypes).map((type) => (
               <option key={type} value={type}>
                 {formatPropertyType(type)}
               </option>

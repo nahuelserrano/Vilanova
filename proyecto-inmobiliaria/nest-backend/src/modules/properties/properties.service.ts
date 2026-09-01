@@ -6,6 +6,7 @@ import { AxiosError } from 'axios';
 import {
   GetPropertiesQueryDto,
   PublicPropertyDto,
+  PropertyTypesResponse,
   PaginatedPropertiesResponse,
 } from './dto/properties.dto';
 
@@ -65,16 +66,30 @@ export class PropertiesService {
     }
   }
 
+  async getPropertyTypes(): Promise<PropertyTypesResponse> {
+    try {
+      const url = `${this.baseUrl}/api/public/inmobiliarias/${this.slug}/property-types`;
+
+      const response = await firstValueFrom(
+        this.httpService.get<PropertyTypesResponse>(url, {
+          headers: { Accept: 'application/json' },
+        }),
+      );
+
+      return response.data;
+    } catch (error) {
+      this.logger.error('Error al consultar tipos de propiedad en TandilProp', error);
+      this.handleHttpError(error);
+    }
+  }
+
   private handleHttpError(error: unknown): never {
     if (error instanceof AxiosError && error.response) {
       const status = error.response.status;
       const data = error.response.data;
 
       if (status === HttpStatus.NOT_FOUND) {
-        throw new HttpException(
-          data?.message || 'Propiedad o inmobiliaria no encontrada',
-          HttpStatus.NOT_FOUND,
-        );
+        throw new HttpException(data?.message || 'Recurso no encontrado', HttpStatus.NOT_FOUND);
       }
       if (status === HttpStatus.BAD_REQUEST) {
         throw new HttpException(data || 'Parámetros de consulta inválidos', HttpStatus.BAD_REQUEST);

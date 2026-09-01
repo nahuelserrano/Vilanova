@@ -4,10 +4,10 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Search } from "lucide-react";
 import type { Currency, Operation } from "./types";
-import { formatPropertyType, PROPERTY_TYPES } from "./format";
+import { formatPropertyType, resolvePropertyTypes } from "./format";
 import { buildSearchString, type Filters } from "./filters";
 
-export default function SearchBar() {
+export default function SearchBar({ propertyTypes }: { propertyTypes: string[] }) {
   const router = useRouter();
 
   const [operacion, setOperacion] = useState<Operation | "">("");
@@ -58,7 +58,7 @@ export default function SearchBar() {
             className="w-full rounded-lg border border-line bg-cream-soft px-4 py-3 text-sm text-charcoal focus:outline-none"
           >
             <option value="">Todas</option>
-            {PROPERTY_TYPES.map((type) => (
+            {resolvePropertyTypes(propertyTypes).map((type) => (
               <option key={type} value={type}>
                 {formatPropertyType(type)}
               </option>

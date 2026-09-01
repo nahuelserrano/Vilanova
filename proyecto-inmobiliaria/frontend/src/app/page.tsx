@@ -4,6 +4,7 @@ import SearchBar from "@/features/properties/SearchBar";
 import Categories from "@/features/properties/Categories";
 import FeaturedProperties from "@/features/properties/FeaturedProperties";
 import Contact from "@/features/contact/Contact";
+import { getPropertyTypes } from "@/features/properties/api";
 
 function FeaturedSkeleton() {
   return (
@@ -28,11 +29,13 @@ function FeaturedSkeleton() {
   );
 }
 
-export default function Home() {
+export default async function Home() {
+  const propertyTypes = await getPropertyTypes().catch(() => []);
+
   return (
     <>
       <Hero />
-      <SearchBar />
+      <SearchBar propertyTypes={propertyTypes} />
       <Categories />
       <Suspense fallback={<FeaturedSkeleton />}>
         <FeaturedProperties />

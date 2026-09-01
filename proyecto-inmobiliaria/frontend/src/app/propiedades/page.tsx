@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getProperties } from "@/features/properties/api";
+import { getProperties, getPropertyTypes } from "@/features/properties/api";
 import { buildPropertiesQuery, buildSearchString, parseFilters, type RawSearchParams } from "@/features/properties/filters";
 import PropertyCard from "@/features/properties/PropertyCard";
 import PropertiesScrollRestore from "@/features/properties/PropertiesScrollRestore";
@@ -25,6 +25,7 @@ export default async function PropertiesPage({
   const page = Math.max(1, Number(rawPage) || 1);
 
   const { items, pagination } = await getProperties(buildPropertiesQuery(filters, page));
+  const propertyTypes = await getPropertyTypes().catch(() => []);
 
   return (
     <section className="mx-auto w-full max-w-384 px-4 py-16 sm:px-6 lg:px-8">
@@ -50,7 +51,11 @@ export default async function PropertiesPage({
 
       <div className="mt-10 grid gap-8 lg:grid-cols-[300px_1fr]">
         <aside className="lg:sticky lg:top-36 lg:self-start">
-          <FiltersPanel key={buildSearchString(filters)} initialFilters={filters} />
+          <FiltersPanel
+            key={buildSearchString(filters)}
+            initialFilters={filters}
+            propertyTypes={propertyTypes}
+          />
         </aside>
 
         <div>
