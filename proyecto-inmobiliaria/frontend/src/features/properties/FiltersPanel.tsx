@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { RotateCcw, Search, SlidersHorizontal } from "lucide-react";
+import { Spinner } from "@/components/ui/Spinner";
 import type { Currency, Operation } from "./types";
-import { formatPropertyType, PROPERTY_TYPES } from "./format";
+import { formatPropertyType, resolvePropertyTypes } from "./format";
 import { type Bedrooms, buildSearchString, type Filters } from "./filters";
 
 const BEDROOM_OPTIONS: { value: Bedrooms; label: string }[] = [
@@ -13,8 +14,15 @@ const BEDROOM_OPTIONS: { value: Bedrooms; label: string }[] = [
   { value: "3plus", label: "3+" },
 ];
 
-export default function FiltersPanel({ initialFilters }: { initialFilters: Filters }) {
+export default function FiltersPanel({
+  initialFilters,
+  propertyTypes,
+}: {
+  initialFilters: Filters;
+  propertyTypes: string[];
+}) {
   const router = useRouter();
+  const [isPending, startTransition] = useTransition();
 
   const [operacion, setOperacion] = useState<Operation | "">(initialFilters.operacion ?? "");
   const [tipo, setTipo] = useState(initialFilters.tipo ?? "");
@@ -47,13 +55,15 @@ export default function FiltersPanel({ initialFilters }: { initialFilters: Filte
     if (maxValue) filters.maxValue = maxValue;
     if (minValue || maxValue) filters.currency = currency;
 
-    router.push(`/propiedades${buildSearchString(filters)}`);
+    startTransition(() => {
+      router.push(`/propiedades${buildSearchString(filters)}`);
+    });
   }
 
   return (
     <form
       onSubmit={apply}
-      className="rounded-2xl border border-line bg-white p-6 shadow-sm"
+      className="font-inter rounded-2xl border border-line bg-white p-6 shadow-sm"
     >
       <div className="flex items-center justify-between">
         <span className="flex items-center gap-2 text-lg font-semibold text-charcoal">
@@ -96,7 +106,7 @@ export default function FiltersPanel({ initialFilters }: { initialFilters: Filte
             className="w-full cursor-pointer rounded-lg border border-line bg-cream-soft px-4 py-3 text-sm text-charcoal focus:outline-none"
           >
             <option value="">Todos</option>
-            {PROPERTY_TYPES.map((type) => (
+            {resolvePropertyTypes(propertyTypes).map((type) => (
               <option key={type} value={type}>
                 {formatPropertyType(type)}
               </option>
@@ -191,9 +201,17 @@ export default function FiltersPanel({ initialFilters }: { initialFilters: Filte
         </label>
       </div>
 
-      <button type="submit" className="btn btn-gold mt-6 w-full">
-        <Search className="h-4 w-4" aria-hidden />
-        Aplicar filtros
+      <button
+        type="submit"
+        disabled={isPending}
+        className="btn btn-gold mt-6 flex w-full items-center justify-center gap-2 disabled:cursor-not-allowed disabled:opacity-70"
+      >
+        {isPending ? (
+          <Spinner className="h-4 w-4" />
+        ) : (
+          <Search className="h-4 w-4" aria-hidden />
+        )}
+        {isPending ? "Aplicando…" : "Aplicar filtros"}
       </button>
     </form>
   );

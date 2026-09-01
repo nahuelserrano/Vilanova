@@ -46,7 +46,7 @@ export default async function PropertyPage({
           <DetailGallery images={property.images} alt={property.title} priority />
         </div>
 
-        <div className="flex min-w-0 flex-col gap-6">
+        <div className="font-inter flex min-w-0 flex-col gap-6">
           <div>
             <div className="flex flex-wrap gap-2">
               <span className="rounded bg-gold px-4 py-1.5 text-sm font-bold text-charcoal">
@@ -56,7 +56,7 @@ export default async function PropertyPage({
                 {formatPropertyType(property.propertyType)}
               </span>
             </div>
-            <h1 className="mt-4 text-3xl text-charcoal sm:text-4xl">{title}</h1>
+            <h1 className="font-inter mt-4 text-3xl text-charcoal sm:text-4xl">{title}</h1>
             <p className="mt-2 flex items-center gap-1.5 text-sm text-charcoal/60">
               <MapPin className="h-4 w-4" aria-hidden />
               {property.location.city}

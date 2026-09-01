@@ -17,7 +17,7 @@ export default function Footer() {
   return (
     <footer className="bg-cream">
       <div className="container-page flex flex-col items-center gap-10 py-14 md:flex-row md:items-start md:justify-center md:gap-24">
-        <div className="flex items-center md:self-center">
+        <div className="hidden items-center md:flex md:self-center">
           <Link href="/" aria-label="Vilanova Propiedades">
             <Image
               src="/logo-cloudinary.png"
@@ -84,14 +84,16 @@ export default function Footer() {
           </div>
         </div>
         <p className="absolute right-0 bottom-full flex items-center gap-2 pr-6 pb-4 text-sm text-charcoal/70">
-          Sitio web desarrollado por
+          <span className="hidden md:inline">Forma parte de</span>
+          <Link href="https://tandilprop.com.ar" target="_blank" rel="noopener noreferrer">
             <Image
-              src="/logo-desarrollos.png"
-              alt="Logo desarrollos"
+              src="/logo-tandilprop.png"
+              alt="Logo TandilProp"
               width={963}
               height={259}
-              className="h-10 w-auto"
+              className="h-12 w-auto"
             />
+          </Link>
         </p>
       </div>
     </footer>

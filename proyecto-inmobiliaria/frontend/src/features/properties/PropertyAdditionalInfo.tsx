@@ -13,20 +13,14 @@ function buildRows(property: PublicProperty): { label: string; value: string }[]
   const rows: { label: string; value: string }[] = [];
 
   if (property.condition) {
-    rows.push({ label: "Estado de la propiedad", value: property.condition });
+    rows.push({ label: "Estado de la propiedad", value: capitalize(property.condition) });
   }
   if (property.antiquityYears != null) {
     rows.push({ label: "Antigüedad", value: `${property.antiquityYears} años` });
   }
-  if (property.orientation) {
-    rows.push({ label: "Orientación", value: property.orientation });
-  }
   const services = formatServices(property.services);
   if (services) {
     rows.push({ label: "Servicios", value: services });
-  }
-  if (property.expensas) {
-    rows.push({ label: "Expensas", value: property.expensas });
   }
   if (property.isMortgageEligible != null) {
     rows.push({
@@ -43,14 +37,14 @@ export default function PropertyAdditionalInfo({ property }: { property: PublicP
 
   return (
     <div className="rounded-2xl border border-line bg-white p-6">
-      <h2 className="text-xl font-semibold text-charcoal">Información adicional</h2>
+      <h2 className="text-2xl font-semibold text-charcoal">Información adicional</h2>
 
       {rows.length > 0 ? (
-        <dl className="mt-4 space-y-3">
+        <dl className="mt-6 space-y-5">
           {rows.map(({ label, value }) => (
             <div key={label} className="flex items-start justify-between gap-4">
-              <dt className="text-sm text-charcoal/60">{label}</dt>
-              <dd className="text-right text-sm font-semibold text-charcoal">{value}</dd>
+              <dt className="text-base text-charcoal/60">{label}</dt>
+              <dd className="text-right text-base font-semibold text-charcoal">{value}</dd>
             </div>
           ))}
         </dl>

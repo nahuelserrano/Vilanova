@@ -56,6 +56,10 @@ export function formatPropertyType(propertyType: string): string {
     .join(" ");
 }
 
+export function resolvePropertyTypes(propertyTypes: string[]): string[] {
+  return propertyTypes.length > 0 ? propertyTypes : PROPERTY_TYPES;
+}
+
 export function flattenSlug(slug: string): string {
   return slug.replaceAll("/", "-");
 }
