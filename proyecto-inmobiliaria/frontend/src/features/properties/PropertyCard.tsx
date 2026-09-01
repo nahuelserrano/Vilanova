@@ -25,7 +25,7 @@ export default function PropertyCard({
           <span className="rounded bg-gold px-4 py-1.5 text-sm font-bold text-charcoal">
             {property.operation.toUpperCase()}
           </span>
-          <span className="rounded bg-charcoal px-4 py-1.5 text-sm font-bold text-white">
+          <span className="rounded bg-charcoal px-4 py-1.5 text-sm text-white">
             {formatPropertyType(property.propertyType)}
           </span>
         </span>
