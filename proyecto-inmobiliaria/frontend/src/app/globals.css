@@ -1,11 +1,11 @@
 @import "tailwindcss";
 
 @theme {
-  --color-cream: #f5eee1;
-  --color-cream-soft: #f5eee7;
-  --color-ivory: #f5eee7;
-  --color-gold: #e0b279;
-  --color-gold-dark: #b38e61;
+  --color-cream: #e0d8d2;
+  --color-cream-soft: #e6e1dc;
+  --color-ivory: #e0d8d2;
+  --color-gold: #cf9f6a;
+  --color-gold-dark: #c09060;
   --color-charcoal: #2b2a25;
   --color-ink: #1e1e1e;
   --color-line: #e6ddc6;
@@ -66,6 +66,6 @@ body {
   }
 
   .hero-bg {
-    background-color: #f5eee7;
+    background-color: var(--color-cream);
   }
 }

@@ -25,7 +25,7 @@ export default function Header() {
             width={831}
             height={300}
             loading="eager"
-            className="h-20 w-auto sm:h-28"
+            className="h-28 w-auto sm:h-36"
           />
         </Link>
 
