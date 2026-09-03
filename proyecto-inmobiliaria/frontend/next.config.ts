@@ -1,9 +1,19 @@
 import type { NextConfig } from "next";
+const cloudfrontHost =
+  (process.env.CLOUDFRONT_DOMAIN || '').replace(/^https?:\/\//, '').split('/')[0] || '';
+
 
 const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
-      { protocol: "https", hostname: "res.cloudinary.com" },
+       ...(cloudfrontHost
+        ? [
+            {
+              protocol: 'https',
+              hostname: cloudfrontHost,
+            },
+          ]
+        : []),
     ],
   },
   async redirects() {
