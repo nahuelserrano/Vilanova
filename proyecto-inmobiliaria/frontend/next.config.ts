@@ -3,18 +3,16 @@ const cloudfrontHost =
   (process.env.CLOUDFRONT_DOMAIN || '').replace(/^https?:\/\//, '').split('/')[0] || '';
 
 
-const nextConfig: NextConfig = {
+const nextConfig = {
   images: {
-    remotePatterns: [
-       ...(cloudfrontHost
-        ? [
-            {
-              protocol: 'https',
-              hostname: cloudfrontHost,
-            },
-          ]
-        : []),
-    ],
+    remotePatterns: cloudfrontHost
+      ? [
+          {
+            protocol: 'https',
+            hostname: cloudfrontHost,
+          },
+        ]
+      : [],
   },
   async redirects() {
     return [
