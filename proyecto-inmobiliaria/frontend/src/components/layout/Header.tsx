@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 
 const NAV_ITEMS = [
@@ -14,6 +14,14 @@ const NAV_ITEMS = [
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 0);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
     <header className="sticky top-0 z-50 bg-ivory/75 backdrop-blur">
@@ -25,7 +33,11 @@ export default function Header() {
             width={831}
             height={300}
             loading="eager"
-            className="h-28 w-auto sm:h-36"
+            className={`w-auto transition-all duration-300 ease-out ${
+              scrolled
+                ? "h-28 translate-y-0 sm:h-36"
+                : "h-36 translate-y-3 sm:h-48 sm:translate-y-8"
+            }`}
           />
         </Link>
 
