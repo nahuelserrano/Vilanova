@@ -1,4 +1,3 @@
-import type { NextConfig } from "next";
 const cloudfrontHost =
   (process.env.CLOUDFRONT_DOMAIN || '').replace(/^https?:\/\//, '').split('/')[0] || '';
 
