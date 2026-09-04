@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { PropertiesModule } from './modules/properties/properties.module';
-// import { ContactModule } from './modules/contact/contact.module';
+import { ContactModule } from './modules/contact/contact.module';
 
 @Module({
   imports: [
@@ -9,7 +9,7 @@ import { PropertiesModule } from './modules/properties/properties.module';
       isGlobal: true,
     }),
     PropertiesModule,
-    // ContactModule,
+    ContactModule,
   ],
 })
 export class AppModule {}

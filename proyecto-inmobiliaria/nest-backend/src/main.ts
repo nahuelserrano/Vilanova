@@ -7,10 +7,10 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const configService = app.get(ConfigService);
 
-  const frontendUrl = configService.get<string>('FRONTEND_URL', 'http://localhost:3000');
+  const frontendUrl = (configService.get<string>('FRONTEND_URL', 'http://localhost:3000') || '').replace(/\/+$/, '');
 
   app.enableCors({
-    origin: 'https://vilanova-pink.vercel.app',
+    origin: frontendUrl,
     methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
     credentials: true,
   });

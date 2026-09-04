@@ -1,100 +1,98 @@
-// import { Injectable, NotFoundException } from '@nestjs/common';
-// import { InjectRepository } from '@nestjs/typeorm';
-// import { Repository } from 'typeorm';
-// import { Contact, ContactStatus } from './entities/contact.entity';
-// // import { CreateContactDto, ContactResponseDto, ContactSubject } from './dto/create-contact.dto';
+import { Injectable, HttpException, HttpStatus, Logger } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
+import { Resend } from 'resend';
+import { CreateContactDto } from './dto/create-contact.dto';
 
-// @Injectable()
-// export class ContactService {
-//   constructor(
-//     @InjectRepository(Contact)
-//     private readonly contactRepository: Repository<Contact>,
-//   ) {}
+const SUCCESS_MESSAGE =
+  '¡Mensaje enviado correctamente! Recibimos tu consulta y nos pondremos en contacto con vos a la brevedad.';
 
-//   async create(createContactDto: CreateContactDto): Promise<ContactResponseDto> {
-//     const contact = this.contactRepository.create(createContactDto);
-//     const savedContact = await this.contactRepository.save(contact);
-//     return this.mapToResponseDto(savedContact);
-//   }
+@Injectable()
+export class ContactService {
+  private readonly logger = new Logger(ContactService.name);
+  private readonly resend: Resend;
+  private readonly toEmail: string;
+  private readonly fromEmail: string | undefined;
 
-//   async findAll(status?: ContactStatus, page: number = 1, limit: number = 20) {
-//     const queryBuilder = this.contactRepository.createQueryBuilder('contact');
+  constructor(private readonly configService: ConfigService) {
+    this.resend = new Resend(this.configService.get<string>('RESEND_API_KEY'));
+    this.toEmail = this.configService.get<string>(
+      'CONTACT_EMAIL',
+      'propiedadesvilanova@gmail.com',
+    );
+    this.fromEmail = this.configService.get<string>('EMAIL_FROM');
+  }
 
-//     if (status) {
-//       queryBuilder.andWhere('contact.status = :status', { status });
-//     }
+  async create(dto: CreateContactDto): Promise<{ success: boolean; message: string }> {
+    if (!this.fromEmail) {
+      this.logger.error('EMAIL_FROM no está configurado. No se puede enviar la consulta.');
+      throw new HttpException(
+        'No pudimos enviar tu consulta. Revisá los datos e intentá nuevamente.',
+        HttpStatus.BAD_GATEWAY,
+      );
+    }
 
-//     queryBuilder.orderBy('contact.createdAt', 'DESC');
+    const createdAt = new Date().toLocaleString('es-AR', {
+      dateStyle: 'long',
+      timeStyle: 'short',
+      timeZone: 'America/Argentina/Buenos_Aires',
+    });
 
-//     const total = await queryBuilder.getCount();
+    const subject = 'Nueva consulta desde vilanovapropiedades.com.ar';
+    const text = this.buildEmailText(dto, createdAt);
+    const html = this.buildEmailHtml(dto, createdAt);
 
-//     queryBuilder.skip((page - 1) * limit).take(limit);
+    try {
+      await this.resend.emails.send({
+        from: this.fromEmail,
+        to: this.toEmail,
+        subject,
+        text,
+        html,
+      });
 
-//     const contacts = await queryBuilder.getMany();
+      return { success: true, message: SUCCESS_MESSAGE };
+    } catch (error) {
+      this.logger.error('Error al enviar la consulta por email', error);
+      throw new HttpException(
+        'No pudimos enviar tu consulta. Revisá los datos e intentá nuevamente.',
+        HttpStatus.BAD_GATEWAY,
+      );
+    }
+  }
 
-//     return {
-//       data: contacts.map(this.mapToResponseDto),
-//       total,
-//       page,
-//       limit,
-//       totalPages: Math.ceil(total / limit),
-//     };
-//   }
+  private buildEmailText(dto: CreateContactDto, createdAt: string): string {
+    return [
+      'Nueva consulta desde vilanovapropiedades.com.ar',
+      '',
+      `Nombre y apellido: ${dto.name}`,
+      `Teléfono: ${dto.phone}`,
+      `Asunto: consulta del interesado`,
+      '',
+      'Mensaje:',
+      dto.message,
+      '',
+      `Fecha y hora de envío: ${createdAt}`,
+    ].join('\n');
+  }
 
-//   async findOne(id: string): Promise<ContactResponseDto> {
-//     const contact = await this.contactRepository.findOne({ where: { id } });
-//     if (!contact) {
-//       throw new NotFoundException(`Contact with ID ${id} not found`);
-//     }
-//     return this.mapToResponseDto(contact);
-//   }
+  private buildEmailHtml(dto: CreateContactDto, createdAt: string): string {
+    return `
+      <h2 style="margin-top:0;">Nueva consulta desde vilanovapropiedades.com.ar</h2>
+      <p><strong>Nombre y apellido:</strong> ${this.escapeHtml(dto.name)}</p>
+      <p><strong>Teléfono:</strong> ${this.escapeHtml(dto.phone)}</p>
+      <p><strong>Asunto:</strong> consulta del interesado</p>
+      <p><strong>Mensaje:</strong></p>
+      <p style="white-space:pre-wrap;">${this.escapeHtml(dto.message)}</p>
+      <p><strong>Fecha y hora de envío:</strong> ${createdAt}</p>
+    `;
+  }
 
-//   async updateStatus(id: string, status: ContactStatus): Promise<ContactResponseDto> {
-//     const contact = await this.contactRepository.findOne({ where: { id } });
-//     if (!contact) {
-//       throw new NotFoundException(`Contact with ID ${id} not found`);
-//     }
-
-//     contact.status = status;
-//     const updatedContact = await this.contactRepository.save(contact);
-//     return this.mapToResponseDto(updatedContact);
-//   }
-
-//   async getStats() {
-//     const total = await this.contactRepository.count();
-//     const byStatus = await this.contactRepository
-//       .createQueryBuilder('contact')
-//       .select('contact.status', 'status')
-//       .addSelect('COUNT(*)', 'count')
-//       .groupBy('contact.status')
-//       .getRawMany();
-
-//     const bySubject = await this.contactRepository
-//       .createQueryBuilder('contact')
-//       .select('contact.subject', 'subject')
-//       .addSelect('COUNT(*)', 'count')
-//       .groupBy('contact.subject')
-//       .getRawMany();
-
-//     return {
-//       total,
-//       byStatus,
-//       bySubject,
-//     };
-//   }
-
-//   private mapToResponseDto(contact: Contact): ContactResponseDto {
-//     return {
-//       id: contact.id,
-//       name: contact.name,
-//       email: contact.email,
-//       phone: contact.phone,
-//       subject: contact.subject,
-//       propertyId: contact.propertyId,
-//       message: contact.message,
-//       newsletter: contact.newsletter,
-//       createdAt: contact.createdAt,
-//       status: contact.status,
-//     };
-//   }
-// }
+  private escapeHtml(value: string): string {
+    return value
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+}
