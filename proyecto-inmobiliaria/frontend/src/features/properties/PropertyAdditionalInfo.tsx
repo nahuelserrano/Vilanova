@@ -1,19 +1,22 @@
 import type { PublicProperty } from "./types";
 
-function capitalize(value: string): string {
-  return value.charAt(0).toUpperCase() + value.slice(1);
+function humanize(value: string): string {
+  return value
+    .split("_")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join(" ");
 }
 
 function formatServices(services?: string[]): string | null {
   if (!services || services.length === 0) return null;
-  return services.map(capitalize).join(", ");
+  return services.map(humanize).join(", ");
 }
 
 function buildRows(property: PublicProperty): { label: string; value: string }[] {
   const rows: { label: string; value: string }[] = [];
 
   if (property.condition) {
-    rows.push({ label: "Estado de la propiedad", value: capitalize(property.condition) });
+    rows.push({ label: "Estado de la propiedad", value: humanize(property.condition) });
   }
   if (property.antiquityYears != null) {
     rows.push({ label: "Antigüedad", value: `${property.antiquityYears} años` });

@@ -1,11 +1,33 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 
 export default function PropertyDescription({ description }: { description: string }) {
   const [expanded, setExpanded] = useState(false);
-  const longText = description.length > 280;
+  const [hasOverflow, setHasOverflow] = useState(false);
+  const textRef = useRef<HTMLParagraphElement>(null);
+  const expandedRef = useRef(expanded);
+
+  useEffect(() => {
+    expandedRef.current = expanded;
+  }, [expanded]);
+
+  useEffect(() => {
+    const element = textRef.current;
+    if (!element) return;
+
+    const measure = () => {
+      if (expandedRef.current) return;
+      setHasOverflow(element.scrollHeight > element.clientHeight);
+    };
+
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(element);
+
+    return () => observer.disconnect();
+  }, [description]);
 
   return (
     <div>
@@ -13,13 +35,14 @@ export default function PropertyDescription({ description }: { description: stri
         Descripción
       </span>
       <p
+        ref={textRef}
         className={`mt-2 whitespace-pre-line text-charcoal/80 ${
-          longText && !expanded ? "line-clamp-3" : ""
+          !expanded ? "line-clamp-3" : ""
         }`}
       >
         {description}
       </p>
-      {longText ? (
+      {hasOverflow ? (
         <button
           type="button"
           onClick={() => setExpanded((current) => !current)}
