@@ -5,7 +5,7 @@ export interface ContactItem {
 
 export const CONTACT: ContactItem[] = [
   { text: "Paz 578, Tandil" },
-  { text: "2494 550518", href: "https://wa.me/5492494550518" },
+  { text: "2494 23-1265", href: "https://wa.me/5492494231265" },
   { text: "propiedadesvilanova@gmail.com" },
   { text: "Lunes a viernes de 9 a 12:30 y de 14 a 17 h" },
 ];
