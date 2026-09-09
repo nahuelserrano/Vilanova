@@ -17,19 +17,19 @@ export default function Footer() {
   return (
     <footer className="bg-cream">
       <div className="container-page flex flex-col items-center gap-10 py-14 md:flex-row md:items-start md:justify-center md:gap-24">
-        <div className="hidden items-center md:flex md:self-center">
+        <div className="order-2 hidden items-center md:order-1 md:flex md:-mt-12">
           <Link href="/" aria-label="Vilanova Propiedades">
             <Image
-              src="/logo-cloudinary.png"
+              src="/placa.png"
               alt="Vilanova Propiedades"
-              width={1587}
-              height={991}
-              className="h-35 w-auto sm:h-40"
+              width={960}
+              height={1280}
+              className="h-64 w-auto sm:h-72"
             />
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-24">
+        <div className="order-1 grid grid-cols-1 gap-10 md:order-2 md:grid-cols-2 md:gap-24">
           <div className="space-y-5">
             <h3 className="text-lg text-charcoal">Contacto</h3>
             <ul className="space-y-4">

@@ -46,7 +46,7 @@ export default function Header() {
 
         <div className="flex items-center md:mr-8 lg:mr-14">
           <nav aria-label="Principal">
-            <ul className="hidden items-center gap-14 md:flex lg:gap-20">
+              <ul className="hidden items-center gap-14 lg:flex lg:gap-20">
               {NAV_ITEMS.map((item) => (
                 <li key={item.href}>
                   <Link
@@ -63,7 +63,7 @@ export default function Header() {
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-line bg-cream-soft text-charcoal transition-colors hover:border-gold hover:text-gold md:hidden"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-line bg-cream-soft text-charcoal transition-colors hover:border-gold hover:text-gold lg:hidden"
             aria-expanded={open}
             aria-controls="mobile-menu"
             aria-label={open ? "Cerrar menú" : "Abrir menú"}
@@ -74,7 +74,7 @@ export default function Header() {
       </div>
 
       {open && (
-        <nav id="mobile-menu" aria-label="Menú móvil" className="border-t border-line md:hidden">
+        <nav id="mobile-menu" aria-label="Menú móvil" className="border-t border-line lg:hidden">
           <ul className="flex flex-col px-4 py-4">
             {NAV_ITEMS.map((item) => (
               <li key={item.href} className="border-b border-line last:border-0">
